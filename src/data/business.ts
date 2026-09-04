@@ -9,6 +9,8 @@ export const business = {
     { display: "89509 77904", href: "tel:+918950977904", primary: true },
     { display: "82218 22926", href: "tel:+918221822926", primary: false },
   ],
+  // Used for WhatsApp deep-links (wa.me) — digits only, with country code.
+  whatsappNumber: "918950977904",
   address: {
     line1: "Shop No. 3, Bijipur Main Road",
     line2: "Sundar Nagar, Near Vegetable Market",
