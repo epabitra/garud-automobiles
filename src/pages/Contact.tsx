@@ -23,8 +23,10 @@ export function Contact() {
         image="/images/storefront/storefront-day-authorized-dealer.webp"
       />
 
-      <section className="py-20 sm:py-28">
-        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-16">
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <div className="pointer-events-none absolute -right-40 top-20 h-96 w-96 rounded-full bg-accent-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -left-40 bottom-0 h-72 w-72 rounded-full bg-energy-400/10 blur-3xl" />
+        <Container className="relative grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-16">
           <div className="lg:col-span-2">
             <Reveal className="space-y-6">
               <ContactCard
@@ -80,7 +82,7 @@ export function Contact() {
           </div>
 
           <div className="lg:col-span-3">
-            <Reveal delay={0.1} className="rounded-3xl border border-line bg-surface p-6 shadow-soft sm:p-8">
+            <Reveal delay={0.1} className="rounded-3xl border border-line bg-surface p-6 shadow-lift sm:p-8">
               <h2 className="font-[var(--font-display)] text-2xl font-bold text-ink">
                 Send an Enquiry
               </h2>
@@ -108,9 +110,9 @@ function ContactCard({
   children: ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-line bg-surface p-6 shadow-soft">
+    <div className="group rounded-2xl border border-line bg-surface p-6 shadow-soft transition-all duration-300 hover:border-accent-200 hover:shadow-glow">
       <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
+        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-50 text-accent-600 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
             {icon}
           </svg>

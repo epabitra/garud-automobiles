@@ -6,6 +6,7 @@ import { Container } from "../components/ui/Container";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { Reveal } from "../components/ui/Reveal";
 import { SmartImage } from "../components/ui/SmartImage";
+import { FloatingImageChip } from "../components/ui/FloatingImageChip";
 import { business } from "../data/business";
 
 export function About() {
@@ -24,8 +25,9 @@ export function About() {
         image="/images/storefront/storefront-family-entrance.webp"
       />
 
-      <section className="py-20 sm:py-28">
-        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-accent-400/10 blur-3xl" />
+        <Container className="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHeading
               eyebrow="Our Story"
@@ -50,9 +52,22 @@ export function About() {
               <SmartImage
                 src="/images/gallery/delivery-ceremony-formal.webp"
                 alt="A vehicle handover ceremony inside Garud Automobiles showroom"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
+            <span className="absolute -top-5 left-8 hidden items-center gap-1.5 rounded-full bg-ink px-3.5 py-1.5 text-xs font-semibold text-white shadow-lift sm:flex">
+              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-accent-400" fill="none" stroke="currentColor" strokeWidth={2}>
+                <path d="M8 2v3M16 2v3M3.5 9h17M5 5h14a1.5 1.5 0 0 1 1.5 1.5V19A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V6.5A1.5 1.5 0 0 1 5 5Z" />
+              </svg>
+              Est. {business.grandOpening.date}
+            </span>
+            <FloatingImageChip
+              src="/images/storefront/storefront-night-signage.webp"
+              alt="Garud Automobiles showroom at night"
+              className="hidden -left-10 bottom-10 lg:block"
+              size="lg"
+              delay="-3s"
+            />
           </Reveal>
         </Container>
       </section>
@@ -64,7 +79,7 @@ export function About() {
               <SmartImage
                 src="/images/milestones/grand-opening-signboard.webp"
                 alt="Garud Automobiles Grand Opening signboard, 15 January 2025"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
           </Reveal>
@@ -92,7 +107,7 @@ export function About() {
               <SmartImage
                 src="/images/interior/interior-workshop-fabrication.webp"
                 alt="A custom cargo cart under fabrication at our Berhampur workshop"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
           </Reveal>

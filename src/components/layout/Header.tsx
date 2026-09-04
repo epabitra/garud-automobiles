@@ -43,9 +43,10 @@ export function Header() {
       }`}
     >
       <Container className="flex h-[72px] items-center justify-between py-3">
-        <NavLink to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-ink">
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+        <NavLink to="/" className="group flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <span className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-ink transition-transform duration-300 group-hover:scale-105 group-hover:rotate-6">
+            <span className="absolute inset-0 rounded-lg bg-accent-400 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-40" />
+            <svg viewBox="0 0 24 24" className="relative h-5 w-5" fill="none">
               <path
                 d="M13 2 5 13h4l-1.5 9L18 11h-4l1.5-9Z"
                 fill="var(--color-accent-500)"
@@ -69,14 +70,25 @@ export function Header() {
               to={item.to}
               end={item.to === "/"}
               className={({ isActive }) =>
-                `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                `relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-surface-sunk text-ink"
+                    ? "text-ink"
                     : "text-text-muted hover:bg-surface-muted hover:text-ink"
                 }`
               }
             >
-              {item.label}
+              {({ isActive }) => (
+                <>
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      className="absolute inset-0 -z-10 rounded-full bg-surface-sunk"
+                    />
+                  )}
+                  {item.label}
+                </>
+              )}
             </NavLink>
           ))}
         </nav>

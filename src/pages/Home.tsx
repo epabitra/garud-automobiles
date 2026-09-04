@@ -8,6 +8,7 @@ import { GalleryPreview } from "../components/sections/GalleryPreview";
 import { FaqPreview } from "../components/sections/FaqPreview";
 import { LocationSection } from "../components/sections/LocationSection";
 import { CtaBanner } from "../components/sections/CtaBanner";
+import { TickerStrip } from "../components/sections/TickerStrip";
 
 export function Home() {
   useSeo({
@@ -21,6 +22,7 @@ export function Home() {
       <Hero />
       <TrustStrip />
       <VehicleShowcase />
+      <TickerStrip />
       <WhyChooseUs />
       <AboutPreview />
       <GalleryPreview />

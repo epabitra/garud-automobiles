@@ -4,8 +4,8 @@ type Variant = "primary" | "dark" | "outline" | "ghost";
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-accent-500 text-ink hover:bg-accent-400 shadow-[0_16px_32px_-16px_rgba(21,194,147,0.6)]",
-  dark: "bg-ink text-text-inverse hover:bg-ink-soft",
+    "bg-accent-500 text-ink hover:bg-accent-400 shadow-[0_16px_36px_-14px_rgba(21,194,147,0.65)] hover:shadow-[0_20px_44px_-12px_rgba(21,194,147,0.75)] hover:-translate-y-0.5 shine-sweep",
+  dark: "bg-ink text-text-inverse hover:bg-ink-soft hover:-translate-y-0.5 shine-sweep",
   outline: "border border-line text-text hover:border-ink hover:bg-surface-muted",
   ghost: "text-text hover:bg-surface-muted",
 };

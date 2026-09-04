@@ -34,14 +34,18 @@ export function GalleryPreview() {
         <div className="mt-12 columns-2 gap-4 sm:columns-3">
           {preview.map((img, i) => (
             <Reveal key={img.src} delay={i * 0.06} className="mb-4 break-inside-avoid">
-              <div className="overflow-hidden rounded-2xl border border-line bg-surface-sunk shadow-soft">
+              <div className="group relative overflow-hidden rounded-2xl border border-line bg-surface-sunk shadow-soft transition-all duration-300 hover:shadow-glow">
                 <SmartImage
                   src={img.src}
                   alt={img.alt}
-                  className={`w-full object-cover transition-transform duration-500 hover:scale-105 ${
+                  className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
                     img.orientation === "portrait" ? "aspect-[3/4]" : "aspect-[4/3]"
                   }`}
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <p className="pointer-events-none absolute bottom-0 left-0 right-0 translate-y-2 p-4 text-xs font-medium text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  {img.caption}
+                </p>
               </div>
             </Reveal>
           ))}

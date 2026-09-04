@@ -80,11 +80,15 @@ export function Vehicles() {
               {v.images.slice(0, 4).map((img, i) => (
                 <div
                   key={img}
-                  className={`overflow-hidden rounded-2xl border border-line shadow-soft ${
+                  className={`group overflow-hidden rounded-2xl border border-line shadow-soft transition-all duration-300 hover:shadow-glow ${
                     v.images.length > 1 && i === 0 ? "col-span-2 aspect-[16/10]" : "aspect-square"
                   }`}
                 >
-                  <SmartImage src={img} alt={`${v.name} photo ${i + 1}`} className="h-full w-full object-cover" />
+                  <SmartImage
+                    src={img}
+                    alt={`${v.name} photo ${i + 1}`}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
                 </div>
               ))}
             </Reveal>

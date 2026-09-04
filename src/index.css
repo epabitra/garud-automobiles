@@ -1,33 +1,71 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Sora", "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #0b0f0d;
-  --color-ink-soft: #16211c;
+  --color-ink: #0a0e0c;
+  --color-ink-soft: #151f1a;
   --color-surface: #ffffff;
-  --color-surface-muted: #f5f7f4;
-  --color-surface-sunk: #eef1ec;
-  --color-line: #e3e7e1;
+  --color-surface-muted: #f6f8f4;
+  --color-surface-sunk: #edf2ec;
+  --color-line: #e2e7e0;
 
-  --color-text: #121815;
-  --color-text-muted: #5a655e;
+  --color-text: #10160f;
+  --color-text-muted: #5c6960;
   --color-text-inverse: #f3f6f2;
 
   --color-accent-50: #eafcf6;
   --color-accent-100: #cff6e7;
+  --color-accent-200: #99ecc9;
   --color-accent-400: #2fdba3;
   --color-accent-500: #15c293;
   --color-accent-600: #0e9973;
   --color-accent-700: #0a765a;
 
+  --color-lime-400: #c6f24e;
+  --color-lime-500: #a9e02f;
+
   --color-energy-400: #ffc857;
   --color-energy-500: #f5a623;
   --color-energy-600: #d98a12;
 
-  --shadow-soft: 0 1px 2px rgba(11, 15, 13, 0.04), 0 8px 24px -12px rgba(11, 15, 13, 0.18);
-  --shadow-lift: 0 24px 60px -24px rgba(11, 15, 13, 0.35);
+  --color-violet-400: #8b8ff7;
+  --color-violet-500: #6c6ff0;
+
+  --shadow-soft: 0 1px 2px rgba(10, 14, 12, 0.04), 0 8px 24px -12px rgba(10, 14, 12, 0.18);
+  --shadow-lift: 0 24px 60px -24px rgba(10, 14, 12, 0.35);
+  --shadow-glow: 0 0 0 1px rgba(21, 194, 147, 0.15), 0 20px 50px -16px rgba(21, 194, 147, 0.45);
+
+  --animate-float-slow: float 7s ease-in-out infinite;
+  --animate-float-slower: float 10s ease-in-out infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-blob: blob 16s ease-in-out infinite;
+  --animate-shine: shine 2.6s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 3.5s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -14px, 0) rotate(2deg); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(24px, -20px) scale(1.08); }
+    66% { transform: translate(-18px, 16px) scale(0.94); }
+  }
+  @keyframes shine {
+    0% { transform: translateX(-120%) skewX(-15deg); }
+    60%, 100% { transform: translateX(220%) skewX(-15deg); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
 }
 
 @layer base {
@@ -48,7 +86,7 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   a {
@@ -89,5 +127,54 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, var(--color-accent-400) 10%, var(--color-lime-400) 55%, var(--color-accent-500) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .grain-overlay {
+    position: relative;
+  }
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, rgba(10, 14, 12, 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .bg-dot-grid-light {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .shine-sweep {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-sweep::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    opacity: 0;
+    transform: translateX(-120%) skewX(-15deg);
+  }
+  .shine-sweep:hover::after {
+    opacity: 1;
+    animation: shine 1.1s ease-in-out;
   }
 }

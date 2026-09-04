@@ -43,10 +43,10 @@ export function Gallery() {
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${
                   activeCategory === cat
-                    ? "border-ink bg-ink text-white"
-                    : "border-line text-text-muted hover:border-ink hover:text-ink"
+                    ? "border-ink bg-ink text-white shadow-glow"
+                    : "border-line text-text-muted hover:-translate-y-0.5 hover:border-accent-400 hover:text-ink"
                 }`}
               >
                 {cat}
@@ -68,15 +68,24 @@ export function Gallery() {
                   key={img.src}
                   type="button"
                   onClick={() => setLightboxIndex(i)}
-                  className="mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-line bg-surface-sunk text-left shadow-soft transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-lift"
+                  className="group relative mb-4 block w-full break-inside-avoid overflow-hidden rounded-xl border border-line bg-surface-sunk text-left shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-glow"
                 >
                   <SmartImage
                     src={img.src}
                     alt={img.alt}
-                    className={`w-full object-cover ${
+                    className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
                       img.orientation === "portrait" ? "aspect-[3/4]" : "aspect-[4/3]"
                     }`}
                   />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute bottom-0 left-0 right-0 translate-y-2 p-3 text-xs font-medium text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    {img.caption}
+                  </span>
+                  <span className="pointer-events-none absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/90 text-ink opacity-0 shadow-soft transition-opacity duration-300 group-hover:opacity-100">
+                    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2}>
+                      <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
                 </button>
               ))}
             </div>

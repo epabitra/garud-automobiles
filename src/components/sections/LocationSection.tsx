@@ -6,8 +6,9 @@ import { business } from "../../data/business";
 
 export function LocationSection() {
   return (
-    <section className="py-20 sm:py-28">
-      <Container className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+    <section className="relative overflow-hidden py-20 sm:py-28">
+      <div className="pointer-events-none absolute -right-40 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-accent-400/10 blur-3xl" />
+      <Container className="relative grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
           <SectionHeading
             eyebrow="Visit Us"
@@ -46,7 +47,11 @@ export function LocationSection() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.15}>
+        <Reveal delay={0.15} className="relative">
+          <span className="absolute -top-4 left-6 z-10 flex items-center gap-1.5 rounded-full bg-ink px-3.5 py-1.5 text-xs font-semibold text-white shadow-lift">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-400 animate-pulse-soft" />
+            Open in Google Maps
+          </span>
           <div className="overflow-hidden rounded-3xl border border-line shadow-lift">
             <iframe
               title={`${business.name} location map`}

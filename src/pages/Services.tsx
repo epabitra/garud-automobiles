@@ -37,12 +37,13 @@ export function Services() {
         image="/images/interior/interior-workshop-fabrication.webp"
       />
 
-      <section className="py-20 sm:py-28">
-        <Container className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-dot-grid opacity-[0.4] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent)]" />
+        <Container className="relative grid grid-cols-1 gap-6 sm:grid-cols-2">
           {services.map((s, i) => (
             <Reveal key={s.id} delay={i * 0.08}>
-              <div className="flex h-full gap-5 rounded-2xl border border-line bg-surface p-7 shadow-soft transition-shadow hover:shadow-lift">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
+              <div className="group flex h-full gap-5 rounded-2xl border border-line bg-surface p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent-200 hover:shadow-glow">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
                   <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.8}>
                     {icons[s.id]}
                   </svg>

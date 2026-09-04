@@ -5,6 +5,7 @@ import { Container } from "../components/ui/Container";
 import { Reveal } from "../components/ui/Reveal";
 import { SmartImage } from "../components/ui/SmartImage";
 import { CtaButton } from "../components/ui/CtaButton";
+import { TiltCard } from "../components/ui/TiltCard";
 import { pricedProducts } from "../data/pricing";
 import { business } from "../data/business";
 
@@ -55,14 +56,19 @@ export function Pricing() {
       <section className="py-14 sm:py-20">
         <Container className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {pricedProducts.map((p, i) => (
-            <Reveal key={p.id} delay={i * 0.08}>
-              <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-soft">
+            <Reveal key={p.id} delay={i * 0.08} className="[perspective:900px]">
+              <TiltCard className="flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-soft transition-shadow duration-300 hover:shadow-glow">
                 <div className="relative aspect-[16/10] overflow-hidden bg-surface-sunk">
-                  <SmartImage src={p.image} alt={p.name} className="h-full w-full object-cover" />
+                  <SmartImage
+                    src={p.image}
+                    alt={p.name}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
                   <span className="absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
                     {p.tag}
                   </span>
-                  <span className="absolute right-3 top-3 rounded-full bg-energy-500 px-3 py-1 text-[11px] font-bold text-ink">
+                  <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-energy-500 px-3 py-1 text-[11px] font-bold text-ink">
+                    <span className="h-1.5 w-1.5 rounded-full bg-ink/70 animate-pulse-soft" />
                     Approx.
                   </span>
                 </div>
@@ -96,7 +102,7 @@ export function Pricing() {
                     </CtaButton>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
             </Reveal>
           ))}
         </Container>

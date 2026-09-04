@@ -1,14 +1,22 @@
 import { Container } from "../ui/Container";
 import { Reveal } from "../ui/Reveal";
 import { CtaButton } from "../ui/CtaButton";
+import { GradientOrbs } from "../ui/GradientOrbs";
 import { business } from "../../data/business";
 
 export function CtaBanner() {
   return (
-    <section className="bg-ink py-20 sm:py-24">
-      <Container>
+    <section className="relative overflow-hidden bg-ink py-20 sm:py-24">
+      <GradientOrbs variant="dark" />
+      <div className="grain-overlay absolute inset-0" />
+      <div className="pointer-events-none absolute inset-0 bg-dot-grid-light opacity-40 [mask-image:radial-gradient(ellipse_50%_60%_at_50%_50%,black,transparent)]" />
+
+      <Container className="relative">
         <Reveal className="flex flex-col items-center gap-6 text-center">
-          <h2 className="text-balance font-[var(--font-display)] text-3xl font-bold text-white sm:text-4xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent-400 backdrop-blur-sm">
+            Let's Talk
+          </span>
+          <h2 className="text-balance font-[var(--font-display)] text-3xl font-extrabold text-white sm:text-5xl">
             Looking for an electric vehicle?
           </h2>
           <p className="max-w-xl text-balance text-base text-white/70 sm:text-lg">
